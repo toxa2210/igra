@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Космический Кликер</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stars-bg"></div>
+<div class="container">
+  <header>
+    <h1>🪐 Космический Кликер</h1>
+    <p class="subtitle">Кликай по планете, добывай звёзды, покоряй галактику!</p>
+  </header>
+
+  <main>
+    <section class="click-zone">
+      <div class="score-panel">
+        <div class="score" id="score">0</div>
+        <div class="per-second">⭐ <span id="perSecond">0</span> / сек</div>
+        <div class="per-click">Сила клика: <span id="perClick">1</span> ⭐</div>
+      </div>
+      <div class="planet-wrap">
+        <button id="planet" aria-label="Кликнуть по планете">🪐</button>
+        <div id="floating-layer"></div>
+      </div>
+      <div class="stats-row">
+        <div>Всего кликов: <b id="totalClicks">0</b></div>
+        <div>Заработано всего: <b id="totalEarned">0</b> ⭐</div>
+      </div>
+    </section>
+
+    <aside class="shop">
+      <h2>🛒 Магазин</h2>
+      <div id="upgrades"></div>
+      <h2>🏆 Достижения</h2>
+      <div id="achievements"></div>
+    </aside>
+  </main>
+
+  <footer>
+    <button id="saveBtn">💾 Сохранить</button>
+    <button id="resetBtn" class="danger">🗑 Сбросить</button>
+    <span class="hint">Прогресс сохраняется в браузере автоматически</span>
+  </footer>
+</div>
+
+<div id="toast"></div>
+<script src="game.js"></script>
+</body>
+</html>

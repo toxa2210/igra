@@ -1,0 +1,159 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.stars-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,.9), transparent),
+    radial-gradient(1px 1px at 230px 80px, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 250px 250px;
+  animation: twinkle 4s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes twinkle { from { opacity: .4; } to { opacity: 1; } }
+
+.container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 24px; }
+
+header { text-align: center; margin-bottom: 24px; }
+header h1 { font-size: 2.2rem; text-shadow: 0 0 20px rgba(255,215,0,.5); }
+.subtitle { color: #aab; margin-top: 6px; }
+
+main { display: flex; gap: 24px; flex-wrap: wrap; }
+.click-zone { flex: 1 1 400px; text-align: center; }
+
+.score-panel { margin-bottom: 20px; }
+.score {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #ffd700;
+  text-shadow: 0 0 30px rgba(255,215,0,.6);
+}
+.per-second, .per-click { color: #9ab; margin-top: 4px; }
+
+.planet-wrap { position: relative; display: inline-block; }
+
+#planet {
+  font-size: 9rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform .08s ease;
+  filter: drop-shadow(0 0 40px rgba(255,200,80,.45));
+  user-select: none;
+  -webkit-user-select: none;
+}
+#planet:hover { transform: scale(1.05); }
+#planet:active { transform: scale(.92); }
+
+#floating-layer { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+
+.float-text {
+  position: absolute;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #ffd700;
+  text-shadow: 0 2px 6px rgba(0,0,0,.7);
+  animation: floatUp 1s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes floatUp {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-90px); }
+}
+
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 22px;
+  color: #9ab;
+}
+.stats-row b { color: #ffd700; }
+
+.shop { flex: 1 1 320px; background: rgba(255,255,255,.05); border-radius: 16px; padding: 18px; backdrop-filter: blur(6px); }
+.shop h2 { font-size: 1.1rem; margin-bottom: 12px; color: #ffd700; }
+.shop h2 + div { margin-bottom: 20px; }
+
+.upgrade {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: background .15s, transform .1s;
+}
+.upgrade:hover:not(:disabled) { background: rgba(255,215,0,.15); transform: translateX(3px); }
+.upgrade:disabled { opacity: .45; cursor: not-allowed; }
+.upgrade .emoji { font-size: 1.8rem; }
+.upgrade .info { flex: 1; }
+.upgrade .name { font-weight: 700; }
+.upgrade .desc { font-size: .8rem; color: #9ab; }
+.upgrade .cost { font-weight: 700; color: #ffd700; white-space: nowrap; }
+.upgrade .owned { color: #7fd4ff; font-size: .85rem; }
+
+.achievement {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.04);
+  font-size: .85rem;
+}
+.achievement.unlocked { background: rgba(255,215,0,.12); border: 1px solid rgba(255,215,0,.35); }
+.achievement.locked { opacity: .4; }
+
+footer { display: flex; align-items: center; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
+footer button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #ffd700;
+  color: #222;
+}
+footer button.danger { background: #ff5b5b; color: #fff; }
+.hint { color: #788; font-size: .8rem; }
+
+#toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(20,25,40,.95);
+  border: 1px solid #ffd700;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-weight: 700;
+  transition: transform .3s ease;
+  z-index: 10;
+}
+#toast.show { transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 700px) {
+  #planet { font-size: 6.5rem; }
+  .score { font-size: 2.5rem; }
+}
